@@ -7,7 +7,7 @@
 
 set -e  # exit on first error
 
-REPO_URL="https://github.com/<YOUR-USERNAME>/warlab.git"  # ← replace!
+REPO_URL="https://github.com/top1gg-web/warlab.git"  # ← replace!
 INSTALL_DIR="/opt/warlab"
 ADAPTERS="${1:-}"   # optional: alfa,netgear
 
