@@ -1,5 +1,5 @@
 import subprocess, os, time, sys, json
-CAP_DIR = "/opt/warlab/captures"
+CAP_DIR = "./captures"
 os.makedirs(CAP_DIR, exist_ok=True)
 
 def run(cmd):
