@@ -36,7 +36,7 @@ def upload():
 
 def cli_entry(_):
     slug = token_urlsafe(6)
-    public = ngrok.connect(addr=8000, subdomain=slug, bind_tls=True).public_url
+    public = ngrok.connect(addr=8000, bind_tls=True).public_url
     print(f"Share this link:\\n{public}\\nCtrl+C to stop (logs in {LOG})")
 
     def run_app():
