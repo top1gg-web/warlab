@@ -25,15 +25,16 @@ def cli_entry(_):
     channel = input("Channel: ").strip()
 
     ts = int(time.time())
-    pcap = f"{CAP_DIR}/handshake_{ts}.pcap"
-
+    prefix = f"{CAP_DIR}/handshake_{ts}"
+    
     print("[*] Capturing handshake; stop after you see 'WPA handshake' top-right")
-    cap_cmd = f"sudo airodump-ng -c {channel} --bssid {target} -w {CAP_DIR}/handshake {mon}"
+    cap_cmd = f"sudo airodump-ng -c {channel} --bssid {target} -w {prefix} {mon}"
     try:
         run(cap_cmd)
     except KeyboardInterrupt:
         pass
 
+    pcap = f"{prefix}-01.cap"
     print(f"[+] Saved to {pcap}")
 
     dict_path = input("Path to wordlist for aircrack (blank to skip crack): ").strip()
